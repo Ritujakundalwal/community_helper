@@ -1,0 +1,21 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+<h2>Request Help</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Help Type:</label>
+        <input type="text" name="help_type" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Description:</label>
+        <textarea name="description" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Area/Pincode:</label>
+        <input type="text" name="area" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit Request</button>
+</form>
+{% endblock %}

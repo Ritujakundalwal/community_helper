@@ -1,0 +1,29 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>{{ user.username }}'s Profile</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <h3>Your Help Requests</h3>
+    {% if user_requests %}
+        <ul>
+            {% for req in user_requests %}
+                <li>{{ req.help_type }} - {{ req.area }} - {{ req.created_at }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't created any help requests.</p>
+    {% endif %}
+
+    <h3>Requests You Accepted</h3>
+    {% if accepted_requests %}
+        <ul>
+            {% for req in accepted_requests %}
+                <li>{{ req.help_type }} - {{ req.area }} - Accepted On: {{ req.created_at }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't accepted any requests yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

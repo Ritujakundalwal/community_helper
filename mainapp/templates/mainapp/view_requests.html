@@ -1,0 +1,22 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+<h2>Available Help Requests in Your Area</h2>
+{% if requests %}
+    <ul class="list-group">
+    {% for req in requests %}
+        <li class="list-group-item">
+            <strong>{{ req.help_type }}</strong> - {{ req.description }} <br>
+            <small>Area: {{ req.area }}</small><br>
+            {% if not req.is_accepted %}
+                <a href="{% url 'accept_request' req.id %}" class="btn btn-primary mt-2">Accept</a>
+            {% else %}
+                <span class="text-success">Accepted by {{ req.accepted_by.username }}</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No requests available.</p>
+{% endif %}
+{% endblock %}
